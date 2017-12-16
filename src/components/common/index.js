@@ -6,5 +6,5 @@ export * from './Spinner';
 export * from './Footer';
 export * from './NavigationLink';
 // export * from './PlacesInput';
-export * from './GooglePlacesInput';
+//export * from './GooglePlacesInput';
 
