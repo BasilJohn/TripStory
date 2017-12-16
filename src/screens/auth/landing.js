@@ -3,6 +3,15 @@ import { Text, StyleSheet, Image, ScrollView, View } from 'react-native';
 import { Button, Block, BlockDetail } from '../../components/common';
 
 export default class Landing extends React.Component {
+
+    onGetStartedHandler = () => {
+     
+        this.props.navigator.push({
+            screen: 'trip-story.PreAuthScreen',
+            title: ''
+        });
+    }
+
     render(props) {
         return (
             <ScrollView contentContainerStyle={styles.contentContainerStyle}>
@@ -27,7 +36,7 @@ export default class Landing extends React.Component {
                 </View>
                 <View>
                     <BlockDetail>
-                        <Button onPress={() => this.props.navigation.navigate('Initial')} buttonText={'Get Started'} />
+                        <Button onPress={this.onGetStartedHandler} buttonText={'Get Started'} />
                     </BlockDetail>
                 </View>
             </ScrollView>
