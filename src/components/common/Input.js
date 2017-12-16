@@ -5,7 +5,7 @@ const Input = (props) => {
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.labelStyle}>{props.inputText}</Text>
-            <TextInput
+            <TextInput underlineColorAndroid="transparent"
                 secureTextEntry={props.secureTextEntry}
                 autoCorrect={false}
                 placeholder={props.placeholder}

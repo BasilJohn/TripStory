@@ -4,16 +4,28 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default class Initial extends React.Component {
 
+    openSignUpPageHandler = () => {
+        this.props.navigator.push({
+            screen: 'trip-story.SignUpScreen',
+            title: 'Sign Up'
+        });
+    }
+    openLoginPageHandler = () => {
+        this.props.navigator.push({
+            screen: 'trip-story.LoginScreen',
+            title: 'Login'
+        });
+    }
     render(props) {
-      
+
         return (
 
             <View style={styles.parentStyle}>
                 <View style={styles.childStyle}>
-                    <Button onPress={() => alert("SignUp")} buttonText={'Sign Up'} />
+                    <Button onPress={this.openSignUpPageHandler} buttonText={'Sign Up'} />
                 </View>
                 <View style={styles.childStyle} >
-                    <Button onPress={() => alert("Login")} buttonText={'Login'} />
+                    <Button onPress={this.openLoginPageHandler} buttonText={'Login'} />
                 </View>
             </View>
         );

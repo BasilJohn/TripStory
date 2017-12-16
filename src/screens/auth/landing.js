@@ -1,11 +1,24 @@
 import React from 'react';
 import { Text, StyleSheet, Image, ScrollView, View } from 'react-native';
 import { Button, Block, BlockDetail } from '../../components/common';
+import firebase from 'firebase';
 
 export default class Landing extends React.Component {
 
+    componentDidMount() {
+        var config = {
+            apiKey: "AIzaSyCU7bSoXbTGGydNHBYHYkJKBRl3F-dkuAE",
+            authDomain: "tripping-22ff3.firebaseapp.com",
+            databaseURL: "https://tripping-22ff3.firebaseio.com",
+            projectId: "tripping-22ff3",
+            storageBucket: "tripping-22ff3.appspot.com",
+            messagingSenderId: "789650220393"
+        };
+        firebase.initializeApp(config);
+    }
+
     onGetStartedHandler = () => {
-     
+
         this.props.navigator.push({
             screen: 'trip-story.PreAuthScreen',
             title: ''
