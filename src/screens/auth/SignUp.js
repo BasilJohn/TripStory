@@ -8,12 +8,6 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
 class SignUp extends React.Component {
 
 
-    static navigationOptions = {
-        title: 'Sign Up',
-        headerTintColor: '#F1F1F2',
-        headerTitleStyle: { color: '#F1F1F2' }
-    };
-
     onPressButton() {
         const { email, password, username, fullname } = this.props;
         this.props.onSignUpUser({ email, password, username, fullname });

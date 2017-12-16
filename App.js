@@ -23,6 +23,8 @@ Navigation.startSingleScreenApp({
     navBarBackgroundColor: '#2D4262',
     navBarTextColor: '#F1F1F2',
     navBarButtonColor: '#F1F1F2',
-  }
+  },
+  animated: true,
+  animationType: 'fade'
 });
 

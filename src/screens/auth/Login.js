@@ -1,7 +1,7 @@
 import React from "react";
-import {  View,  Text,  StyleSheet,  KeyboardAvoidingView,  ScrollView } from "react-native";
-import {  Button,  Input,  Spinner,  Block,  BlockDetail,  NavigationLink} from "../../components/common";
-import {  onEmailChanged,  onPasswordChanged,  onLoginUser,  setNavigationProps} from "../../store/actions";
+import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-native";
+import { Button, Input, Spinner, Block, BlockDetail, NavigationLink } from "../../components/common";
+import { onEmailChanged, onPasswordChanged, onLoginUser, setNavigationProps } from "../../store/actions";
 import MainFeed from "../trip/MainFeed";
 import firebase from "firebase";
 import { connect } from "react-redux";
@@ -20,18 +20,18 @@ class Login extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ loggedIn: true });
-        this.props.navigation.setParams({
-          showAddTrip: "1"
+        this.props.navigator.setTitle({
+          title: "Trip List"
         });
       } else {
         this.setState({ loggedIn: false });
-        this.props.navigation.setParams({
-          showAddTrip: "0"
+        this.props.navigator.setTitle({
+          title: "Login"
         });
       }
     });
 
-    this.props.setNavigationProps(this.props.navigation);
+
   }
 
   onLoginButtonPress() {

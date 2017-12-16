@@ -3,6 +3,7 @@ import { Text, StyleSheet, Image, ScrollView, View } from 'react-native';
 import { Button, Block, BlockDetail } from '../../components/common';
 import firebase from 'firebase';
 
+
 export default class Landing extends React.Component {
 
     componentDidMount() {

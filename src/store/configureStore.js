@@ -1,6 +1,7 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose,applyMiddleware } from 'redux';
 import AuthReducer from './reducers/AuthReducer';
 import TripReducer from './reducers/TripReducer';
+import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     auth: AuthReducer,
@@ -13,7 +14,7 @@ if (__DEV__) {
 
 }
 const configureStore = () => {
-    return createStore(rootReducer, composeEnhancers());
+    return createStore(rootReducer, composeEnhancers(),applyMiddleware(ReduxThunk));
 };
 
 
