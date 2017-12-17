@@ -4,12 +4,20 @@ import { BlockDetail } from "../../components/common";
 import { connect } from "react-redux";
 
 class ListItem extends React.Component {
-  render() {
+
+  showTripStoryHandler = () => {
+    this.props.navigator.push({
+      screen: 'trip-story.TripStoryScreen',
+      title: 'TripStory'
+    });
+  }
+
+  render(props) {
     const { tripStartPlace, tripEndPlace } = this.props.trip;
     return (
       <TouchableOpacity
         style={styles.touchStyle}
-        onPress={() => this.props.navigation.navigation.navigate("TripStory")}
+        onPress={this.showTripStoryHandler}
       >
         <View style={styles.tileStyle}>
           <BlockDetail>

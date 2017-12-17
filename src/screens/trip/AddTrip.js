@@ -1,23 +1,19 @@
 import React from 'react';
 import { View, Text, ScrollView, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native';
-import { Input, Button, BlockDetail } from '../common';
-import PlacesInput from '../common/PlacesInput';
-import { updateSelectedPlace, onAddTrip } from '../../actions';
+import { Input, Button, BlockDetail } from '../../components/common';
+import PlacesInput from '../../components/common/PlacesInput';
+import { updateSelectedPlace, onAddTrip } from '../../store/actions';
 import { connect } from 'react-redux';
 
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
 class AddTrip extends React.Component {
 
-    static navigationOptions = {
-        title: 'Add Trip',
-        headerTintColor: '#F1F1F2',
-        headerTitleStyle: { color: '#F1F1F2' }
-
-    };
-
     addTrip() {
         this.props.onAddTrip(this.props.tripStartPlace, this.props.tripEndPlace);
-        this.props.navigation.goBack(null);
+        this.props.navigator.push({
+            screen: 'trip-story.LoginScreen',
+            title: 'Login'
+        });
     }
 
     render(props) {

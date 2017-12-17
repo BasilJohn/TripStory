@@ -23,6 +23,19 @@ class Login extends React.Component {
         this.props.navigator.setTitle({
           title: "Trip List"
         });
+        this.props.navigator.setButtons({
+          rightButtons: [
+            {
+              title: 'Add Trip',
+              id: 'addTrip',
+              buttonColor: '#F1F1F2',
+              buttonFontSize: 30,
+              buttonFontWeight: '800',
+            }
+          ],
+          animated: true
+        });
+
       } else {
         this.setState({ loggedIn: false });
         this.props.navigator.setTitle({
@@ -85,7 +98,22 @@ class Login extends React.Component {
         return <Spinner />;
     }
   }
+  constructor(props) {
+    super(props);
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+  }
 
+  onNavigatorEvent(event) {
+    if (event.type == 'NavBarButtonPress') {
+      if (event.id == 'addTrip') {
+        this.props.navigator.push({
+          screen: 'trip-story.AddTripScreen',
+          title: 'Add Trip'
+      });
+      }
+
+    }
+  }
   render(props) {
     return (
       <View style={styles.contentContainerStyle}>{this.renderContent()}</View>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Image, TextInput, StyleSheet, TouchableOpacity, Modal, Text, TouchableHighlight } from 'react-native';
 import { GooglePlacesInput } from './GooglePlacesInput';
-import { updateSelectedPlace, showModal } from '../../actions';
+import { updateSelectedPlace, showModal } from '../../store/actions';
 import { connect } from 'react-redux';
 
 const IMAGES = {
-    start: require('./Images/GooglePlaces.png'),
-    end: require('./Images/redtarget.png')
+    start: require('../../assets/GooglePlaces.png'),
+    end: require('../../assets/redtarget.png')
 }
 
 class PlacesInput extends React.Component {
@@ -28,7 +28,7 @@ class PlacesInput extends React.Component {
                 <View style={styles.containerStyle}>
                     <Image style={styles.imageStyle} source={IMAGES['start']} />
                     <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true, 'start') }}>
-                        <TextInput
+                        <TextInput underlineColorAndroid="transparent"
                             secureTextEntry={this.props.secureTextEntry}
                             autoCorrect={false}
                             placeholder={'Trip start place'}
@@ -41,7 +41,7 @@ class PlacesInput extends React.Component {
                 <View style={styles.containerStyle}>
                     <Image style={styles.imageStyle} source={IMAGES['end']} />
                     <TouchableOpacity style={styles.touchStyle} onPress={() => { this.toggleModal(true, 'end') }}>
-                        <TextInput
+                        <TextInput underlineColorAndroid="transparent"
                             secureTextEntry={this.props.secureTextEntry}
                             autoCorrect={false}
                             placeholder={'Trip end place'}
