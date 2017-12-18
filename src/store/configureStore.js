@@ -16,7 +16,7 @@ if (__DEV__) {
 
 }
 const configureStore = () => {
-    return createStore(rootReducer, composeEnhancers(), applyMiddleware(ReduxThunk));
+    return createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
 };
 
 

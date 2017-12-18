@@ -10,4 +10,5 @@ export const SHOW_MODAL ='show_modal';
 export const TRIPS_FETCH_SUCCESS="trips_fetch_success";
 export const SHOW_TRIP_LIST="show_trip_list";
 export const SET_NAVIGATION_PROPS="set_navigation_props";
+export const ON_IMAGE_PICKED="on_image_picked";
 

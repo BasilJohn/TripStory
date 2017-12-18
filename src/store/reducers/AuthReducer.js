@@ -3,10 +3,15 @@ import {
     PASSWORD_CHANGED, USERNAME_CHANGED, FULLNAME_CHANGED,
     LOGIN_USER,
     LOGIN_USER_SUCESS,
-    LOGIN_USER_FAIL
+    LOGIN_USER_FAIL,
+    ON_IMAGE_PICKED
 } from '.././actions/types';
 
-const INITIAL_STATE = { email: '', password: '', error: '', loading: false, username: '', fullname: '' }
+const INITIAL_STATE = {
+    email: '',
+    password: '', error: '', loading: false,
+    username: '', fullname: '', profileImage: null
+}
 
 export default (state = INITIAL_STATE, action) => {
 
@@ -23,6 +28,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, error: '', loading: true }
         case LOGIN_USER_SUCESS:
             return { ...state, ...INITIAL_STATE, user: action.payload }
+        case ON_IMAGE_PICKED:
+            return { ...state, profileImage: action.payload }
         case LOGIN_USER_FAIL:
             return {
                 ...state, ...INITIAL_STATE,

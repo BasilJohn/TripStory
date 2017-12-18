@@ -51,12 +51,12 @@ export const onSignUpTextChanged = (prop, value) => {
   };
 };
 
-export const onSignUpUser = ({ email, password, username, fullname }) => {
+export const onSignUpUser = ({ email, password, username, fullname,profileImage }) => {
   return dispatch => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => signUpUserSuccess(dispatch, user, username, fullname))
+      .then(user => signUpUserSuccess(dispatch, user, username, fullname,profileImage))
       .catch(() => loginUserFail(dispatch));
   };
 };
@@ -124,5 +124,12 @@ export const setNavigationProps = navigationProps => {
   return {
     type: SET_NAVIGATION_PROPS,
     payload: navigationProps
+  };
+};
+
+export const onImagePicked = image => {
+  return {
+    type: ON_IMAGE_PICKED,
+    payload: image
   };
 };

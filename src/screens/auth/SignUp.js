@@ -6,16 +6,41 @@ import {
     Platform, Keyboard, TouchableWithoutFeedback
 } from 'react-native';
 import { Block, BlockDetail, Button, Input, Spinner } from '../../components/common';
-import { onSignUpTextChanged, onSignUpUser } from '../../store/actions';
+import { onSignUpTextChanged, onSignUpUser, onImagePicked } from '../../store/actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
+import ImagePicker from 'react-native-image-picker';
+
 const keyboardVerticalOffset = 200;
 class SignUp extends React.Component {
 
+    state = {
+        pickedImage: null
+    }
+
+    pickedImageHandler = () => {
+
+        ImagePicker.showImagePicker({
+            title: "Pick an Image"
+        },
+            res => {
+                if (res.didCancel) {
+                    // console.log("Cancel")
+                } else if (res.error) {
+                    // console.log("error")
+                } else {
+                    this.setState({
+                        pickedImage: { uri: res.uri }
+                    });
+                    this.props.onImagePicked({ uri: res.uri, base64: res.data })
+                }
+            }
+        );
+    }
 
     onPressButton() {
-        const { email, password, username, fullname } = this.props;
-        this.props.onSignUpUser({ email, password, username, fullname });
+        const { email, password, username, fullname,profileImage } = this.props;
+        this.props.onSignUpUser({ email, password, username, fullname,profileImage });
 
     }
 
@@ -37,14 +62,14 @@ class SignUp extends React.Component {
 
         return (
             // <View style={styles.signUpStyle}>
-                <KeyboardAvoidingView behavior="padding" style={styles.signUpStyle} >
+            <KeyboardAvoidingView behavior="padding" style={styles.signUpStyle} >
                 <View style={styles.contentContainerStyle}>
                     <View >
                         <BlockDetail>
-                            <TouchableOpacity style={styles.buttonStyle}>
+                            <TouchableOpacity style={styles.buttonStyle} onPress={this.pickedImageHandler}>
                                 <Image
                                     style={styles.introImageStyle}
-                                    source={require('../../assets/SimpleAdd.svg')}
+                                    source={this.state.pickedImage}
                                 />
                             </TouchableOpacity>
                         </BlockDetail>
@@ -84,7 +109,7 @@ class SignUp extends React.Component {
                         {this.renderButton()}
                     </View>
                 </View>
-                </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
             // </View>
         );
     }
@@ -125,10 +150,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, error, loading, username, fullname } = auth;
+    const { email, password, error, loading, username, fullname,profileImage } = auth;
     return {
-        email, password, error, loading, username, fullname
+        email, password, error, loading, username, fullname,profileImage
     }
 }
 
-export default connect(mapStateToProps, { onSignUpTextChanged, onSignUpUser })(SignUp)
+export default connect(mapStateToProps, { onSignUpTextChanged, onSignUpUser, onImagePicked })(SignUp)
