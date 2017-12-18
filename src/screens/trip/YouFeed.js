@@ -30,6 +30,7 @@ class YouFeed extends React.Component {
     return <TripList trip={trip} />;
   }
   render(props) {
+    
     return (
       <ListView
         enableEmptySections

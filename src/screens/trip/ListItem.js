@@ -6,13 +6,14 @@ import { connect } from "react-redux";
 class ListItem extends React.Component {
 
   showTripStoryHandler = () => {
-    this.props.navigator.push({
+    this.props.navigator.navigator.push({
       screen: 'trip-story.TripStoryScreen',
       title: 'TripStory'
     });
   }
 
   render(props) {
+    
     const { tripStartPlace, tripEndPlace } = this.props.trip;
     return (
       <TouchableOpacity
@@ -67,9 +68,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ navigation }) => {
+const mapStateToProps = ({ navigator }) => {
   return {
-    navigation
+    navigator
   };
 };
 

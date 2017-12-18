@@ -31,6 +31,7 @@ export default class SignUp extends React.Component {
   }
 
   render(props) {
+    
     return (
       <View style={styles.containerStyle}>
         <View style={styles.contentStyle}>{this.renderChildView()}</View>

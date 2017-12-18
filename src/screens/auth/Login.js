@@ -44,7 +44,7 @@ class Login extends React.Component {
       }
     });
 
-
+    this.props.setNavigationProps(this.props.navigator);
   }
 
   onLoginButtonPress() {
@@ -115,6 +115,7 @@ class Login extends React.Component {
     }
   }
   render(props) {
+    
     return (
       <View style={styles.contentContainerStyle}>{this.renderContent()}</View>
     );
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }, ownProps) => {
-  const { navigation } = ownProps;
+  const { navigator } = ownProps;
 
   const { email, password, error, loading } = auth;
 
@@ -150,7 +151,7 @@ const mapStateToProps = ({ auth }, ownProps) => {
     password,
     error,
     loading,
-    navigation
+    navigator
   };
 };
 

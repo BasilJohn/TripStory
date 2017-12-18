@@ -5,6 +5,10 @@ import SignUpScreen from './src/screens/auth/SignUp';
 import LoginScreen from './src/screens/auth/Login';
 import AddTripScreen from './src/screens/trip/AddTrip';
 import TripStoryScreen from './src/screens/trip/TripStory';
+import MainFeedScreen from './src/screens/trip/MainFeed';
+import YouFeedScreen from './src/screens/trip/YouFeed';
+import NearYouFeedScreen from './src/screens/trip/NearYouFeed';
+import WorldFeedScreen from './src/screens/trip/WorldFeed';
 import { Provider } from 'react-redux';
 import configureStore from './src/store/configureStore';
 
@@ -17,6 +21,10 @@ Navigation.registerComponent("trip-story.SignUpScreen", () => SignUpScreen, stor
 Navigation.registerComponent("trip-story.LoginScreen", () => LoginScreen, store, Provider);
 Navigation.registerComponent("trip-story.AddTripScreen", () => AddTripScreen, store, Provider);
 Navigation.registerComponent("trip-story.TripStoryScreen", () => TripStoryScreen, store, Provider);
+Navigation.registerComponent("trip-story.MainFeedScreen", () => MainFeedScreen, store, Provider);
+Navigation.registerComponent("trip-story.YouFeedScreen", () => YouFeedScreen, store, Provider);
+Navigation.registerComponent("trip-story.NearYouFeedScreen", () => NearYouFeedScreen, store, Provider);
+Navigation.registerComponent("trip-story.WorldFeedScreen", () => WorldFeedScreen, store, Provider);
 //Start a APP
 Navigation.startSingleScreenApp({
   screen: {
