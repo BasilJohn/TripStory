@@ -71,7 +71,7 @@ class Login extends React.Component {
       case false:
         return (
           <ScrollView contentContainerStyle={styles.loginStyle}>
-            <KeyboardAvoidingView behavior="position">
+            <KeyboardAvoidingView behavior="padding">
               <Block>
                 <BlockDetail>
                   <Input

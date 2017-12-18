@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     inputStyle: {
         color: '#000',
         paddingRight: 5,
-        paddingLeft: 5,
+        paddingLeft: 0,
         fontSize: 18,
-        lineHeight: 23,
+        lineHeight: 30,
         flex: 2
     },
     labelStyle: {
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     },
     containerStyle: {
         height: 40,
-        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: '#9b9b9d',

@@ -35,6 +35,7 @@ class PlacesInput extends React.Component {
                             value={tripStartPlace}
                             onChangeText={this.props.onChangeText}
                             pointerEvents="none"
+                            accessible={false}
                         />
                     </TouchableOpacity>
                 </View>

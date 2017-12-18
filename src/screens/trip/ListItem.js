@@ -40,7 +40,7 @@ class ListItem extends React.Component {
 
 const styles = StyleSheet.create({
   touchStyle: {
-    paddingBottom: 5
+     borderBottomWidth: 1
   },
   tileStyle: {
     flex: 1,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.8,
-    elevation: 1,
+    elevation: 10,
     height: 100
   },
   titleStyle: {

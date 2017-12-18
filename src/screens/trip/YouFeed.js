@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { ListView, StyleSheet } from "react-native";
+import { ListView, StyleSheet,FlatList } from "react-native";
 import { fetchTripList } from "../../store/actions";
 import TripList from "./ListItem";
 

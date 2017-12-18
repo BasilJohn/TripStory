@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+    View, Text, ScrollView,
+    StyleSheet, TouchableOpacity,
+    Image, KeyboardAvoidingView,
+    Platform, Keyboard, TouchableWithoutFeedback
+} from 'react-native';
 import { Block, BlockDetail, Button, Input, Spinner } from '../../components/common';
 import { onSignUpTextChanged, onSignUpUser } from '../../store/actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 0
+const keyboardVerticalOffset = 200;
 class SignUp extends React.Component {
 
 
@@ -29,61 +34,68 @@ class SignUp extends React.Component {
     }
 
     render(props) {
-      
+
         return (
-            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-                <KeyboardAvoidingView behavior="position">
-                    <BlockDetail>
-                        <TouchableOpacity style={styles.buttonStyle}>
-                            <Image
-                                style={styles.introImageStyle}
-                                source={require('../../assets/SimpleAdd.svg')}
-                            />
-                        </TouchableOpacity>
-                    </BlockDetail>
+            // <View style={styles.signUpStyle}>
+                <KeyboardAvoidingView behavior="padding" style={styles.signUpStyle} >
+                <View style={styles.contentContainerStyle}>
+                    <View >
+                        <BlockDetail>
+                            <TouchableOpacity style={styles.buttonStyle}>
+                                <Image
+                                    style={styles.introImageStyle}
+                                    source={require('../../assets/SimpleAdd.svg')}
+                                />
+                            </TouchableOpacity>
+                        </BlockDetail>
+                    </View>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                        <View>
+
+                            <BlockDetail>
+                                <Input
+                                    placeholder={''}
+                                    inputText={'Email'}
+                                    value={this.props.email}
+                                    onChangeText={this.onSignUpTextChange.bind(this, 'email_changed')} />
+                                <Input
+                                    secureTextEntry
+                                    placeholder={''}
+                                    inputText={'Password'}
+                                    value={this.props.password}
+                                    onChangeText={this.onSignUpTextChange.bind(this, 'password_changed')} />
+                                <Input
+                                    placeholder={''}
+                                    inputText={'Username'}
+                                    value={this.props.username}
+                                    onChangeText={this.onSignUpTextChange.bind(this, 'username_changed')} />
+                                <Input
+                                    placeholder={''}
+                                    inputText={'Fullname'}
+                                    value={this.props.fullname}
+                                    onChangeText={this.onSignUpTextChange.bind(this, 'fullname_changed')} />
+                                <Text style={styles.errorTextStyle}>
+                                    {this.props.error}
+                                </Text>
+                            </BlockDetail>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <View >
+                        {this.renderButton()}
+                    </View>
+                </View>
                 </KeyboardAvoidingView>
-                <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={keyboardVerticalOffset}>
-                    <BlockDetail>
-                        <Input
-                            placeholder={''}
-                            inputText={'Email'}
-                            value={this.props.email}
-                            onChangeText={this.onSignUpTextChange.bind(this, 'email_changed')} />
-                        <Input
-                            secureTextEntry
-                            placeholder={''}
-                            inputText={'Password'}
-                            value={this.props.password}
-                            onChangeText={this.onSignUpTextChange.bind(this, 'password_changed')} />
-                        <Input
-                            placeholder={''}
-                            inputText={'Username'}
-                            value={this.props.username}
-                            onChangeText={this.onSignUpTextChange.bind(this, 'username_changed')} />
-                        <Input
-                            placeholder={''}
-                            inputText={'Fullname'}
-                            value={this.props.fullname}
-                            onChangeText={this.onSignUpTextChange.bind(this, 'fullname_changed')} />
-                        <Text style={styles.errorTextStyle}>
-                            {this.props.error}
-                        </Text>
-                    </BlockDetail>
-                </KeyboardAvoidingView>
-                <KeyboardAvoidingView behavior="position">
-                    {this.renderButton()}
-                </KeyboardAvoidingView>
-            </ScrollView>
+            // </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     contentContainerStyle: {
-        flexGrow: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        backgroundColor: '#F1F1F2',
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        backgroundColor: "#fff"
     },
     buttonStyle: {
         borderColor: '#ddd',
@@ -103,6 +115,11 @@ const styles = StyleSheet.create({
         color: 'red',
         alignSelf: 'center',
         fontSize: 20,
+    },
+    signUpStyle: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between"
     }
 
 });

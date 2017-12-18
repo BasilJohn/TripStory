@@ -17,7 +17,7 @@ export default class Footer extends React.Component {
                     <Text style={styles.textStyle}>{'Near You'}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.handlePress.bind(this, 'World')} style={styles.buttonStyle}>
-                    <Image style={styles.footerImageStyle} source={require('./Images/Globe_Atlantic.png')} />
+                    <Image style={styles.footerImageStyle} source={require('../../assets/Globe_Atlantic.png')} />
                 </TouchableOpacity>
 
             </View>
