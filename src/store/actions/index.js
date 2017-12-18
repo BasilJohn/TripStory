@@ -8,7 +8,8 @@ import {
   SHOW_MODAL,
   TRIPS_FETCH_SUCCESS,
   SHOW_TRIP_LIST,
-  SET_NAVIGATION_PROPS
+  SET_NAVIGATION_PROPS,
+  ON_IMAGE_PICKED
 } from "./types";
 
 import firebase from "firebase";
@@ -51,22 +52,37 @@ export const onSignUpTextChanged = (prop, value) => {
   };
 };
 
-export const onSignUpUser = ({ email, password, username, fullname,profileImage }) => {
+export const onSignUpUser = ({ email, password, username, fullname, profileImage }) => {
   return dispatch => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => signUpUserSuccess(dispatch, user, username, fullname,profileImage))
+      .then(user => signUpUserSuccess(dispatch, user, username, fullname, profileImage))
       .catch(() => loginUserFail(dispatch));
   };
 };
 
-const signUpUserSuccess = (dispatch, user, username, fullname) => {
+const signUpUserSuccess = (dispatch, user, username, fullname, profileImage) => {
   const { currentUser } = firebase.auth();
-  firebase
-    .database()
-    .ref(`/Users/${currentUser.uid}/User`)
-    .push({ username: username, fullname: fullname });
+  fetch("https://us-central1-tripping-22ff3.cloudfunctions.net/storeImage", {
+    method: "POST",
+    body: JSON.stringify({
+      image: profileImage.base64
+    })
+  }).catch(err => console.log(err)).
+    then(res => res.json()).
+    then(parsedRes => {
+       firebase
+        .database()
+        .ref(`/Users/${currentUser.uid}/User`)
+        .push({ username: username, fullname: fullname, image: parsedRes.imageUrl })
+    })
+    // .catch(err => console.log(err)).
+    // then(res => res.json()).
+    // then(parsedRes => {
+    //   console.log(parsedRes);
+    // });
+
   dispatch({ type: LOGIN_USER_SUCESS, payload: user });
 };
 

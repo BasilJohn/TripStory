@@ -39,13 +39,13 @@ class SignUp extends React.Component {
     }
 
     onPressButton() {
-        const { email, password, username, fullname,profileImage } = this.props;
-        this.props.onSignUpUser({ email, password, username, fullname,profileImage });
+        const { email, password, username, fullname, profileImage } = this.props;
+        this.props.onSignUpUser({ email, password, username, fullname, profileImage });
 
     }
 
     renderButton() {
-        if (this.props.loading) {
+        if (this.props.isLoading) {
             return <Spinner />;
         }
         return (<Button
@@ -149,10 +149,12 @@ const styles = StyleSheet.create({
 
 });
 
-const mapStateToProps = ({ auth }) => {
-    const { email, password, error, loading, username, fullname,profileImage } = auth;
+
+const mapStateToProps = ({ auth ,ui }) => {
+    const { email, password, error, loading, username, fullname, profileImage } = auth;
+    const { isLoading } = ui;
     return {
-        email, password, error, loading, username, fullname,profileImage
+        email, password, error, loading, username, fullname, profileImage,isLoading
     }
 }
 

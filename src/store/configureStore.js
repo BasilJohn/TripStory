@@ -2,12 +2,14 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import AuthReducer from './reducers/AuthReducer';
 import TripReducer from './reducers/TripReducer';
 import NavigationReducer from './reducers/NavigationReducer';
+import UIReducer from './reducers/UIReducer';
 import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     auth: AuthReducer,
     trip: TripReducer,
-    navigator: NavigationReducer
+    navigator: NavigationReducer,
+    ui:UIReducer
 });
 
 let composeEnhancers = compose;
