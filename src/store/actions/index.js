@@ -9,7 +9,8 @@ import {
   TRIPS_FETCH_SUCCESS,
   SHOW_TRIP_LIST,
   SET_NAVIGATION_PROPS,
-  ON_IMAGE_PICKED
+  ON_IMAGE_PICKED,
+  LOAD_USER_INFORMATION
 } from "./types";
 
 import firebase from "firebase";
@@ -148,4 +149,16 @@ export const onImagePicked = image => {
     type: ON_IMAGE_PICKED,
     payload: image
   };
+};
+
+export const loadUserInformation = () => {
+  const { currentUser } = firebase.auth();
+    return dispatch => {
+      firebase
+        .database()
+        .ref(`/Users/${currentUser.uid}/User`)
+        .on("value", snapshot => {
+          dispatch({ type: LOAD_USER_INFORMATION, payload: snapshot.val() });
+        });
+    };
 };

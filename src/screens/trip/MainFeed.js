@@ -1,12 +1,13 @@
 import React from "react";
-import {  View,  Text,  ScrollView,  StyleSheet,  TouchableOpacity} from "react-native";
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { Footer, Button } from "../../components/common";
 import YouFeed from "../trip/YouFeed";
 import NearYouFeed from "../trip/NearYouFeed";
 import WorldFeed from "../trip/WorldFeed";
 import { connect } from "react-redux";
+import _ from "lodash";
 
-export default class SignUp extends React.Component {
+class MainFeed extends React.Component {
   state = { screenToShow: "" };
 
   updateScreenToShow = text => {
@@ -31,12 +32,12 @@ export default class SignUp extends React.Component {
   }
 
   render(props) {
-    
+
     return (
       <View style={styles.containerStyle}>
         <View style={styles.contentStyle}>{this.renderChildView()}</View>
         <View>
-          <Footer updateScreenToShow={this.updateScreenToShow} />
+          <Footer userDetails={this.props.loginDetails} updateScreenToShow={this.updateScreenToShow} />
         </View>
       </View>
     );
@@ -55,3 +56,13 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = ({ auth }) => {
+  const { userInformation } = auth;
+  const userInfo = _.map(userInformation, (val, uid) => {
+    return { ...val, uid };
+  });
+  const loginDetails=userInfo[0];
+  return { loginDetails };
+}
+
+export default connect(mapStateToProps, {})(MainFeed)

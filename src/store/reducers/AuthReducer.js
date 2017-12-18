@@ -4,7 +4,8 @@ import {
     LOGIN_USER,
     LOGIN_USER_SUCESS,
     LOGIN_USER_FAIL,
-    ON_IMAGE_PICKED
+    ON_IMAGE_PICKED,
+    LOAD_USER_INFORMATION
 } from '.././actions/types';
 
 const INITIAL_STATE = {
@@ -30,6 +31,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, ...INITIAL_STATE, user: action.payload }
         case ON_IMAGE_PICKED:
             return { ...state, profileImage: action.payload }
+        case LOAD_USER_INFORMATION:
+            return { ...state, userInformation: action.payload }
         case LOGIN_USER_FAIL:
             return {
                 ...state, ...INITIAL_STATE,

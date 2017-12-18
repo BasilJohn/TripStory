@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView, ScrollView } from "react-native";
 import { Button, Input, Spinner, Block, BlockDetail, NavigationLink } from "../../components/common";
-import { onEmailChanged, onPasswordChanged, onLoginUser, setNavigationProps } from "../../store/actions";
+import { onEmailChanged, onPasswordChanged, onLoginUser, setNavigationProps,loadUserInformation } from "../../store/actions";
 import MainFeed from "../trip/MainFeed";
 import firebase from "firebase";
 import { connect } from "react-redux";
@@ -20,6 +20,7 @@ class Login extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ loggedIn: true });
+        this.props.loadUserInformation();
         this.props.navigator.setTitle({
           title: "Trip List"
         });
@@ -159,5 +160,6 @@ export default connect(mapStateToProps, {
   onEmailChanged,
   onPasswordChanged,
   onLoginUser,
-  setNavigationProps
+  setNavigationProps,
+  loadUserInformation
 })(Login);

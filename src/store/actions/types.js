@@ -13,6 +13,7 @@ export const SET_NAVIGATION_PROPS="set_navigation_props";
 export const ON_IMAGE_PICKED="on_image_picked";
 export const UI_START_LOADING="ui_start_loading";
 export const UI_STOP_LOADING="ui_stop_loading";
+export const LOAD_USER_INFORMATION="load_user_information";
 
 
 
