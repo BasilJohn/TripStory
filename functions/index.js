@@ -22,7 +22,7 @@ exports.storeImage = functions.https.onRequest((request, response) => {
         const uuid = UUID();
         bucket.upload("/tmp/uploaded-image.jpg", {
             uploadType: "media",
-            destination: "/images/profileImages" + uuid + ".jpg",
+            destination: "/images/" + uuid + ".jpg",
             metadata: {
                 metadata:{
                     contentType: "image/jpeg",
