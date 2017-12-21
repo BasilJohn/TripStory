@@ -20,7 +20,6 @@ class Login extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ loggedIn: true });
-        this.props.loadUserInformation();
         this.props.navigator.setTitle({
           title: "Trip List"
         });
@@ -160,6 +159,5 @@ export default connect(mapStateToProps, {
   onEmailChanged,
   onPasswordChanged,
   onLoginUser,
-  setNavigationProps,
-  loadUserInformation
+  setNavigationProps
 })(Login);

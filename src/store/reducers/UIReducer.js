@@ -7,9 +7,9 @@ const INITIAL_STATE={
 const reducer= (state=INITIAL_STATE,action)=>{
   switch(action.type){
       case UI_START_LOADING:
-      return { ...state,isLoading:true}
+      return { ...state,isLoading:action.payload}
       case UI_STOP_LOADING:
-      return { ...state,isLoading:false}
+      return { ...state,isLoading:action.payload}
       default:
       return state;
 

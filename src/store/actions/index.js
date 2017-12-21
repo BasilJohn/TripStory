@@ -10,7 +10,9 @@ import {
   SHOW_TRIP_LIST,
   SET_NAVIGATION_PROPS,
   ON_IMAGE_PICKED,
-  LOAD_USER_INFORMATION
+  LOAD_USER_INFORMATION,
+  UI_START_LOADING,
+  UI_STOP_LOADING
 } from "./types";
 
 import firebase from "firebase";
@@ -73,16 +75,16 @@ const signUpUserSuccess = (dispatch, user, username, fullname, profileImage) => 
   }).catch(err => console.log(err)).
     then(res => res.json()).
     then(parsedRes => {
-       firebase
+      firebase
         .database()
         .ref(`/Users/${currentUser.uid}/User`)
         .push({ username: username, fullname: fullname, image: parsedRes.imageUrl })
     })
-    // .catch(err => console.log(err)).
-    // then(res => res.json()).
-    // then(parsedRes => {
-    //   console.log(parsedRes);
-    // });
+  // .catch(err => console.log(err)).
+  // then(res => res.json()).
+  // then(parsedRes => {
+  //   console.log(parsedRes);
+  // });
 
   dispatch({ type: LOGIN_USER_SUCESS, payload: user });
 };
@@ -153,12 +155,14 @@ export const onImagePicked = image => {
 
 export const loadUserInformation = () => {
   const { currentUser } = firebase.auth();
-    return dispatch => {
-      firebase
-        .database()
-        .ref(`/Users/${currentUser.uid}/User`)
-        .on("value", snapshot => {
-          dispatch({ type: LOAD_USER_INFORMATION, payload: snapshot.val() });
-        });
-    };
+  return dispatch => {
+    dispatch({ type: UI_START_LOADING });
+    firebase
+      .database()
+      .ref(`/Users/${currentUser.uid}/User`)
+      .on("value", snapshot => {
+        dispatch({ type: UI_STOP_LOADING });
+        dispatch({ type: LOAD_USER_INFORMATION, payload: snapshot.val() });
+      });
+  };
 };

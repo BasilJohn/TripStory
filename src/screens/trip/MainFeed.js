@@ -5,10 +5,11 @@ import YouFeed from "../trip/YouFeed";
 import NearYouFeed from "../trip/NearYouFeed";
 import WorldFeed from "../trip/WorldFeed";
 import { connect } from "react-redux";
+import { loadUserInformation } from "../../store/actions";
 import _ from "lodash";
 
 class MainFeed extends React.Component {
-  state = { screenToShow: "" };
+  state = { screenToShow: "", ready: false };
 
   updateScreenToShow = text => {
     this.setState({
@@ -31,16 +32,36 @@ class MainFeed extends React.Component {
     }
   }
 
-  render(props) {
+  componentWillMount() {
+    this.setState({ ready: false });
+    this.props.loadUserInformation();
+  }
 
-    return (
-      <View style={styles.containerStyle}>
-        <View style={styles.contentStyle}>{this.renderChildView()}</View>
-        <View>
-          <Footer userDetails={this.props.loginDetails} updateScreenToShow={this.updateScreenToShow} />
+  componentWillReceiveProps(nextProps) {
+    this.setState({ ready: !nextProps.isLoading });
+  }
+
+  render(props) {
+    if (this.state.ready) {
+
+      return (
+        <View style={styles.containerStyle}>
+          <View style={styles.contentStyle}>{this.renderChildView()}</View>
+          <View>
+            <Footer userDetails={this.props.loginDetails} updateScreenToShow={this.updateScreenToShow} />
+          </View>
         </View>
-      </View>
-    );
+      );
+
+    }
+    else {
+      return (
+        <View style={styles.containerStyle}>
+          <Text>...Loading</Text>
+        </View>
+      );
+    }
+
   }
 }
 
@@ -56,13 +77,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, ui }) => {
   const { userInformation } = auth;
+  const { isLoading } = ui;
   const userInfo = _.map(userInformation, (val, uid) => {
     return { ...val, uid };
   });
-  const loginDetails=userInfo[0];
+  const loginDetails = userInfo[0];
   return { loginDetails };
 }
 
-export default connect(mapStateToProps, {})(MainFeed)
+export default connect(mapStateToProps, { loadUserInformation })(MainFeed)

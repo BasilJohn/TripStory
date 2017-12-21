@@ -4,12 +4,12 @@ import {
 
 export const uiStartLoading = () => {
     return {
-        type: UI_START_LOADING
+        type: UI_START_LOADING,payload:true
     };
 };
 
 export const uiStopLoading = () => {
     return {
-        type: UI_STOP_LOADING
+        type: UI_STOP_LOADING,payload:false
     };
 };
