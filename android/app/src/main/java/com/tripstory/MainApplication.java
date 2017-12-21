@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.reactnativenavigation.NavigationApplication;
 import com.imagepicker.ImagePickerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 
 public class MainApplication extends NavigationApplication {
 
@@ -57,7 +58,8 @@ public class MainApplication extends NavigationApplication {
          // No need to add RnnPackage and MainReactPackage
          return Arrays.<ReactPackage>asList(
              // eg. new VectorIconsPackage()
-             new ImagePickerPackage() 
+             new ImagePickerPackage() ,
+             new VectorIconsPackage()
          );
      }
 
