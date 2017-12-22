@@ -14,7 +14,7 @@ export default class Footer extends React.Component {
         return (
             <View style={styles.containerStyle}>
                 <TouchableOpacity onPress={this.handlePress.bind(this, 'You')} style={styles.buttonStyle}>
-                <Image style={styles.footerImageStyle} source={{uri:image}} />
+                <Image resizeMode="cover"  borderRadius={30} style={styles.footerImageStyle} source={{uri:image}} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.handlePress.bind(this, 'NearYou')} style={styles.buttonStyle}>
                     <Text style={styles.textStyle}>{'Near You'}</Text>

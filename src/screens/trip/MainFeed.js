@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { Footer, Button } from "../../components/common";
+import { Footer, Button, Spinner } from "../../components/common";
 import YouFeed from "../trip/YouFeed";
 import NearYouFeed from "../trip/NearYouFeed";
 import WorldFeed from "../trip/WorldFeed";
@@ -57,7 +57,7 @@ class MainFeed extends React.Component {
     else {
       return (
         <View style={styles.containerStyle}>
-          <Text>...Loading</Text>
+          <Spinner />
         </View>
       );
     }

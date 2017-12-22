@@ -35,7 +35,7 @@ class PlacesInput extends React.Component {
                             value={tripStartPlace}
                             onChangeText={this.props.onChangeText}
                             pointerEvents="none"
-                            accessible={false}
+                            editable={false}
                         />
                     </TouchableOpacity>
                 </View>
@@ -49,6 +49,7 @@ class PlacesInput extends React.Component {
                             value={tripEndPlace}
                             onChangeText={this.props.onChangeText}
                             pointerEvents="none"
+                            editable={false}
                         />
                     </TouchableOpacity>
                 </View>
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
 
     },
     imageStyle: {
-        height: 100,
+        height: 120,
         flex: 1,
         width: 50,
         alignSelf: 'center',
