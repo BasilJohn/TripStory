@@ -92,7 +92,7 @@ class SignUp extends React.Component {
                   style={styles.profileButtonStyle}
                   onPress={this.pickedImageHandler}
                 >
-                  <Image style={styles.introImageStyle} />
+                  <Image source={this.props.profileImage} style={styles.introImageStyle} />
                 </TouchableOpacity>
               </View>
             </BlockDetail>
@@ -169,12 +169,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 80,
     height: 80,
-    backgroundColor: "#F1F1F2"
+    backgroundColor: "red"
   },
   profileButtonStyle: {
     alignSelf: "flex-start",
     width: 80,
-    height: 80
+    height: 80,
+    backgroundColor: "red"
   },
   errorTextStyle: {
     color: "red",

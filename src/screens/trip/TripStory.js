@@ -14,16 +14,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 //     }
 // }
 
-const AddIcon = () =>
+const AddIcon = ({ onPress, name, size, ...props }) =>
     <TouchableOpacity
         style={styles.button}
-        onPress={() => console.log('pressed me!')}>
+        onPress={onPress}>
         <View style={styles.button}>
-            <Ionicons name={"md-add-circle"} color={"#F1F1F2"} size={30} />
+            <Ionicons name={name} color={"#F1F1F2"} size={size} />
         </View>
     </TouchableOpacity>;
 
-//Navigation.registerComponent('Ionicons', () => createIconButton(Ionicons))
 Navigation.registerComponent('AddIcon', () => AddIcon)
 class TripStory extends React.Component {
 
@@ -31,18 +30,15 @@ class TripStory extends React.Component {
         this.props.navigator.setButtons({
             rightButtons: [
                 {
-                    // component: 'Ionicons',
-                    // passProps: {
-                    //     name: 'md-add-circle',
-                    //     size: 30,
-                    //     color: 'white',
-                    //     onPress: this.handlePressSettings,
-                    // },
+                    
                     id: 'add-button',
                     component: 'AddIcon', // This line loads our component as a nav bar button item
                     passProps: {
-                        text: 'Hi!',
-                    },
+                        name: 'md-add-circle',
+                        size: 30,
+                        color: 'white',
+                        onPress: this.handlePressSettings,
+                    }
                 }
             ],
             animated: true
