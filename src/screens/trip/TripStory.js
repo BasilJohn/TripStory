@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import { connect } from "react-redux";
 import { Navigation } from 'react-native-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { showModal } from '../../store/actions/index';
 
 // function createIconButton(IconFont) {
 //     return function IconButton({ onPress, name, size, ...props }) {
@@ -26,11 +27,13 @@ const AddIcon = ({ onPress, name, size, ...props }) =>
 Navigation.registerComponent('AddIcon', () => AddIcon)
 class TripStory extends React.Component {
 
+    state = { showModal: false };
+
     componentDidMount() {
         this.props.navigator.setButtons({
             rightButtons: [
                 {
-                    
+
                     id: 'add-button',
                     component: 'AddIcon', // This line loads our component as a nav bar button item
                     passProps: {
@@ -45,14 +48,29 @@ class TripStory extends React.Component {
         });
     }
     handlePressSettings = () => {
-        alert('Pressed settings!')
+        this.setState({ showModal: true });
     }
 
-    render(props) {
-       
+    toggleModal = () => {
+        this.setState({ showModal: false });
+    }
+
+    render() {
+
+        const modalStatus = this.state.showModal ? true : false;
+
         return (
             <View>
-                <Text></Text>
+                <Text>TripStory</Text>
+                <Modal animationType={"slide"} transparent={false}
+                    visible={modalStatus}
+                    onRequestClose={() => { console.log('closed') }}>
+                    <View style={styles.modal}>
+                        <TouchableOpacity style={styles.closeStyle} onPress={this.toggleModal}>
+                            <Ionicons style={styles.button} color={"#F1F1F2"} name="md-close-circle" size={30} />
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
             </View>
         )
     }
@@ -67,6 +85,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    modal: {
+        flex: 1,
+        paddingTop: 25,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor: '#2D4262'
+    },
+    closeStyle: {
+        alignItems: 'flex-end',
+        marginBottom: 15
+    },
+    textStyle: {
+        color: '#F1F1F2',
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
 });
 
 const mapStateToProps = ({ navigation }, ownProps) => {
