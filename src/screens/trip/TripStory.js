@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Navigation } from 'react-native-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { showModal } from '../../store/actions/index';
+import TripDetail from './TripDetail';
 
 // function createIconButton(IconFont) {
 //     return function IconButton({ onPress, name, size, ...props }) {
@@ -68,6 +69,7 @@ class TripStory extends React.Component {
                     <View style={styles.modal}>
                         <TouchableOpacity style={styles.closeStyle} onPress={this.toggleModal}>
                             <Ionicons style={styles.button} color={"#F1F1F2"} name="md-close-circle" size={30} />
+                            <TripDetail/>
                         </TouchableOpacity>
                     </View>
                 </Modal>
@@ -100,6 +102,12 @@ const styles = StyleSheet.create({
         color: '#F1F1F2',
         fontSize: 16,
         fontWeight: 'bold'
+    },
+    containerStyle:{
+        flex: 1,
+        flexDirection: 'row',
+        paddingBottom: 1,
+        justifyContent: 'space-between'
     }
 });
 
