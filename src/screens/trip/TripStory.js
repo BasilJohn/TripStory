@@ -61,17 +61,22 @@ class TripStory extends React.Component {
         const modalStatus = this.state.showModal ? true : false;
 
         return (
-            <View>
-                <Text>TripStory</Text>
+            <View style={styles.containerStyle} >
+                <View>
+                    <Text>Stories</Text>
+                </View>
                 <Modal animationType={"slide"} transparent={false}
                     visible={modalStatus}
                     onRequestClose={() => { console.log('closed') }}>
                     <View style={styles.modal}>
                         <TouchableOpacity style={styles.closeStyle} onPress={this.toggleModal}>
                             <Ionicons style={styles.button} color={"#F1F1F2"} name="md-close-circle" size={30} />
-                            <TripDetail/>
                         </TouchableOpacity>
+                        <TripDetail />
                     </View>
+                    {/* <View>
+                   
+                    </View> */}
                 </Modal>
             </View>
         )
@@ -89,25 +94,20 @@ const styles = StyleSheet.create({
     },
     modal: {
         flex: 1,
-        paddingTop: 25,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        paddingTop: 10,
         backgroundColor: '#2D4262'
     },
     closeStyle: {
         alignItems: 'flex-end',
-        marginBottom: 15
+        marginBottom: 1
     },
     textStyle: {
         color: '#F1F1F2',
         fontSize: 16,
         fontWeight: 'bold'
     },
-    containerStyle:{
-        flex: 1,
-        flexDirection: 'row',
-        paddingBottom: 1,
-        justifyContent: 'space-between'
+    containerStyle: {
+        flex: 1
     }
 });
 

@@ -15,6 +15,9 @@ export default class TripDetail extends React.Component {
 
 const styles = StyleSheet.create({
     containerStyle: {
-        backgroundColor: '#F1F1F2'
+        flex:1,
+        marginTop:20,
+        backgroundColor: '#F1F1F2',
+        
     }
 });
