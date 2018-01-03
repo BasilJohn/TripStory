@@ -1,5 +1,5 @@
 import React from 'react';
-import { View , Text , StyleSheet } from 'react-native'; 
+import { View , Text , StyleSheet, Image } from 'react-native'; 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ImagePicker from "react-native-image-picker";
 
@@ -31,8 +31,9 @@ export default class ImageHolder extends React.Component{
 
     render(){
         return(
-            <View>
-                <View style={styles.actionIconContainer}>
+            <View style={styles.actionIconContainer}>
+               <Image source={this.state.pickedImage}  style={styles.imageStyle} />
+                <View style={styles.actionContainer} >
                 <View style={styles.ionicons}>
                 <Ionicons name={"md-create"} onPress={this.pickedImageHandler } color={"black"} size={30} />
                 </View>
@@ -48,14 +49,25 @@ export default class ImageHolder extends React.Component{
 const styles = StyleSheet.create({
    
     actionIconContainer: {
-      
+       flex:1,
        flexDirection:'row', 
        justifyContent: 'flex-end',
-       marginLeft:10
     },
     ionicons:{
-        margin:10
-    }
+       margin:10
+    },
+    imageStyle: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'cover'
+        
+      },
+      actionContainer:{
+        flex:1,
+        flexDirection:'row',
+        position:'absolute'
+      }
 });
 
 export { ImageHolder }
