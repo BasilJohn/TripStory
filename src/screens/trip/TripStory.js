@@ -6,16 +6,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { showModal } from '../../store/actions/index';
 import TripDetail from './TripDetail';
 
-// function createIconButton(IconFont) {
-//     return function IconButton({ onPress, name, size, ...props }) {
-//         return (
-//             <TouchableOpacity onPress={onPress} {...props}>
-//                 <IconFont name={name} size={size} />
-//             </TouchableOpacity>
-//         )
-//     }
-// }
-
 const AddIcon = ({ onPress, name, size, ...props }) =>
     <TouchableOpacity
         style={styles.button}
@@ -74,9 +64,6 @@ class TripStory extends React.Component {
                         </TouchableOpacity>
                         <TripDetail />
                     </View>
-                    {/* <View>
-                   
-                    </View> */}
                 </Modal>
             </View>
         )
