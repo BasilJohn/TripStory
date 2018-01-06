@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { ImageHolder,TextArea } from '../../components/common';
+import { ImageHolder,TextArea, Button } from '../../components/common';
 
 
 export default class TripDetail extends React.Component {
@@ -13,6 +13,9 @@ export default class TripDetail extends React.Component {
                 <View style={styles.textArea}>
                 <TextArea/>
                 </View>
+                <View style={styles.footer}>
+                 <Button buttonText={'Add'}/>
+                </View>    
             </View>
         )
     }
@@ -27,9 +30,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#F1F1F2',
     },
     imageHolder:{
-        flex:2
+        flex:3
     },
     textArea:{
         flex:1
+    },
+    footer:{
+        flex:1,
+        justifyContent:'flex-end'
     }
 });
