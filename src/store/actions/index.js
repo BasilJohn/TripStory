@@ -12,7 +12,8 @@ import {
   ON_IMAGE_PICKED,
   LOAD_USER_INFORMATION,
   UI_START_LOADING,
-  UI_STOP_LOADING
+  UI_STOP_LOADING,
+  ON_STORY_IMAGE_PICKED
 } from "./types";
 
 import firebase from "firebase";
@@ -164,5 +165,12 @@ export const loadUserInformation = () => {
         dispatch({ type: UI_STOP_LOADING });
         dispatch({ type: LOAD_USER_INFORMATION, payload: snapshot.val() });
       });
+  };
+};
+
+export const onStoryImagePicked = image => {
+  return {
+    type: ON_STORY_IMAGE_PICKED,
+    payload: image
   };
 };

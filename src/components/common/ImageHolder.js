@@ -2,6 +2,8 @@ import React from 'react';
 import { View , Text , StyleSheet, Image } from 'react-native'; 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ImagePicker from "react-native-image-picker";
+import { onStoryImagePicked } from "../../store/actions";
+import { connect } from "react-redux";
 
 export default class ImageHolder extends React.Component{
 
@@ -23,7 +25,7 @@ export default class ImageHolder extends React.Component{
               this.setState({
                 pickedImage: { uri: res.uri }
               });
-              //this.props.onImagePicked({ uri: res.uri, base64: res.data });
+              //this.props.onStoryImagePicked({ uri: res.uri, base64: res.data });
             }
           }
         );

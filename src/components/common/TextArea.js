@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     inputStyle:{
         textAlign: 'left',
-        fontSize:20,
+        fontSize:15,
         height:'100%'
     }
 });
