@@ -1,14 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ImageHolder,TextArea, Button } from '../../components/common';
+import { connect } from "react-redux";
+import { onStoryImagePicked } from "../../store/actions";
 
+class TripDetail extends React.Component {
 
-export default class TripDetail extends React.Component {
+    setSelectedImage= (selectedImage)=>{
+
+        this.props.onStoryImagePicked(selectedImage )
+    }
     render() {
         return (
             <View style={styles.containerStyle}>
              <View style={styles.imageHolder}>
-                <ImageHolder/>
+                <ImageHolder setSelectedImage={this.setSelectedImage}/>
                 </View>
                 <View style={styles.textArea}>
                 <TextArea/>
@@ -40,3 +46,12 @@ const styles = StyleSheet.create({
         justifyContent:'flex-end'
     }
 });
+
+mapStateToProps = ({ trip }) => {
+
+    const { storyImage } = trip;
+    return { storyImage }
+
+}
+
+export default connect(mapStateToProps, { onStoryImagePicked })(TripDetail)

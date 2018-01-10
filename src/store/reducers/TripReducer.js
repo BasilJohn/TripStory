@@ -2,7 +2,7 @@ import {
      UPDATE_SELECTED_PLACE,
      SHOW_MODAL,
      SHOW_TRIP_LIST,
-     TRIPS_FETCH_SUCCESS } from '../actions/types';
+     TRIPS_FETCH_SUCCESS,ON_STORY_IMAGE_PICKED } from '../actions/types';
 
 const INITIAL_STATE = { tripStartPlace:'' , 
                         tripEndPlace: '',
@@ -10,7 +10,7 @@ const INITIAL_STATE = { tripStartPlace:'' ,
                         selectedPlace: '' , 
                         modalVisible: false,
                         tripList: {},
-                        source:'' }
+                        source:'',storyImage:null }
 export default (state = INITIAL_STATE ,action ) =>{
   
     switch (action.type){
@@ -22,6 +22,8 @@ export default (state = INITIAL_STATE ,action ) =>{
         return { ...state ,tripAdded : action.payload }
         case TRIPS_FETCH_SUCCESS :
         return { tripList: action.payload }
+        case ON_STORY_IMAGE_PICKED:
+        return { ...state, storyImage: action.payload }
         default:
         return state;
     }
