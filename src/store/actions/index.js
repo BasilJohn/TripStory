@@ -13,7 +13,8 @@ import {
   LOAD_USER_INFORMATION,
   UI_START_LOADING,
   UI_STOP_LOADING,
-  ON_STORY_IMAGE_PICKED
+  ON_STORY_IMAGE_PICKED,
+  ON_STORY_TEXT_CHANGED
 } from "./types";
 
 import firebase from "firebase";
@@ -172,5 +173,12 @@ export const onStoryImagePicked = image => {
   return {
     type: ON_STORY_IMAGE_PICKED,
     payload: image
+  };
+};
+
+export const onStoryTextChanged = value => {
+  return {
+    type: ON_STORY_TEXT_CHANGED,
+    payload: value
   };
 };

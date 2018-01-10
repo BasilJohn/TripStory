@@ -15,6 +15,6 @@ export const UI_START_LOADING="ui_start_loading";
 export const UI_STOP_LOADING="ui_stop_loading";
 export const LOAD_USER_INFORMATION="load_user_information";
 export const ON_STORY_IMAGE_PICKED="on_story_image_picked";
-
+export const ON_STORY_TEXT_CHANGED="on_story_text_changed";
 
 
