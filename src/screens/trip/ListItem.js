@@ -2,6 +2,7 @@ import React from "react";
 import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { BlockDetail } from "../../components/common";
 import { connect } from "react-redux";
+import { setTripID } from "../../store/actions";
 
 class ListItem extends React.Component {
 
@@ -12,9 +13,14 @@ class ListItem extends React.Component {
     });
   }
 
+  componentDidMount(){
+    const { uid }=this.props.trip;
+    this.props.setTripID(uid);
+  }
   render(props) {
     
     const { tripStartPlace, tripEndPlace } = this.props.trip;
+    
     return (
       <TouchableOpacity
         style={styles.touchStyle}
@@ -74,4 +80,4 @@ const mapStateToProps = ({ navigator }) => {
   };
 };
 
-export default connect(mapStateToProps, {})(ListItem);
+export default connect(mapStateToProps, {setTripID})(ListItem);

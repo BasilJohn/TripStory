@@ -16,5 +16,6 @@ export const UI_STOP_LOADING="ui_stop_loading";
 export const LOAD_USER_INFORMATION="load_user_information";
 export const ON_STORY_IMAGE_PICKED="on_story_image_picked";
 export const ON_STORY_TEXT_CHANGED="on_story_text_changed";
+export const SET_TRIP_ID="set_trip_id";
 
 

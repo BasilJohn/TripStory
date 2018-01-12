@@ -14,7 +14,8 @@ import {
   UI_START_LOADING,
   UI_STOP_LOADING,
   ON_STORY_IMAGE_PICKED,
-  ON_STORY_TEXT_CHANGED
+  ON_STORY_TEXT_CHANGED,
+  SET_TRIP_ID
 } from "./types";
 
 import firebase from "firebase";
@@ -180,5 +181,25 @@ export const onStoryTextChanged = value => {
   return {
     type: ON_STORY_TEXT_CHANGED,
     payload: value
+  };
+};
+
+export const onAddStory = (story,storyImage,tripUId ) => {
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/Trips/${currentUser.uid}/UserTrips/`)
+      .push({ tripStartPlace, tripEndPlace })
+      .then(() => {
+        dispatch({ type: SHOW_TRIP_LIST, payload: true });
+      });
+  };
+};
+
+export const setTripID = tripId => {
+  return {
+    type: SET_TRIP_ID,
+    payload: tripId
   };
 };
