@@ -62,7 +62,7 @@ class TripStory extends React.Component {
                         <TouchableOpacity style={styles.closeStyle} onPress={this.toggleModal}>
                             <Ionicons style={styles.button} color={"#F1F1F2"} name="md-close-circle" size={30} />
                         </TouchableOpacity>
-                        <TripDetail />
+                        <TripDetail closeModal={this.toggleModal}/>
                     </View>
                 </Modal>
             </View>

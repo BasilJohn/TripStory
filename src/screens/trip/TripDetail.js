@@ -15,10 +15,11 @@ class TripDetail extends React.Component {
      }
 
     onTripStoryDetailAdd=()=>{
-         this.props.onStoryDetailAdd(this.props.storyImage,this.props.storyText,this.props.tripId);        
+         this.props.onStoryDetailAdd(this.props.storyImage,this.props.storyText,this.props.tripId); 
+         this.props.closeModal();       
     }
-     
-
+    
+    
     render() {
         return (
             <View style={styles.containerStyle}>
@@ -29,7 +30,7 @@ class TripDetail extends React.Component {
                 <TextArea onChangeText={this.onStoryTextChange.bind(this)} value={this.props.storyText}/>
                 </View>
                 <View style={styles.footer}>
-                 <Button buttonText={'Add'} onPress={this.onTripStoryDetailAdd}/>
+                 <Button buttonText={'Add'}  onPress={this.onTripStoryDetailAdd}/>
                 </View>    
             </View>
         )
