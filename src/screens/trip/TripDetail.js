@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ImageHolder,TextArea, Button } from '../../components/common';
 import { connect } from "react-redux";
-import { onStoryImagePicked, onStoryTextChanged } from "../../store/actions";
+import { onStoryImagePicked, onStoryTextChanged,onStoryDetailAdd } from "../../store/actions";
 
 class TripDetail extends React.Component {
 
@@ -13,6 +13,10 @@ class TripDetail extends React.Component {
     onStoryTextChange(text){
          this.props.onStoryTextChanged(text);
      }
+
+    onTripStoryDetailAdd=()=>{
+         this.props.onStoryDetailAdd(this.props.storyImage,this.props.storyText,this.props.tripId);        
+    }
      
 
     render() {
@@ -25,7 +29,7 @@ class TripDetail extends React.Component {
                 <TextArea onChangeText={this.onStoryTextChange.bind(this)} value={this.props.storyText}/>
                 </View>
                 <View style={styles.footer}>
-                 <Button buttonText={'Add'}/>
+                 <Button buttonText={'Add'} onPress={this.onTripStoryDetailAdd}/>
                 </View>    
             </View>
         )
@@ -53,8 +57,8 @@ const styles = StyleSheet.create({
 });
 
 mapStateToProps = ({ trip }) => {
-    const { storyImage, storyText } = trip;
-    return { storyImage,storyText }
+    const { storyImage, storyText,tripId } = trip;
+    return { storyImage,storyText,tripId }
 }
 
-export default connect(mapStateToProps, { onStoryImagePicked,onStoryTextChanged })(TripDetail)
+export default connect(mapStateToProps, { onStoryImagePicked,onStoryTextChanged,onStoryDetailAdd })(TripDetail)

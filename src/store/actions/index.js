@@ -15,7 +15,8 @@ import {
   UI_STOP_LOADING,
   ON_STORY_IMAGE_PICKED,
   ON_STORY_TEXT_CHANGED,
-  SET_TRIP_ID
+  SET_TRIP_ID,
+  SHOW_TRIP_STORY_LIST
 } from "./types";
 
 import firebase from "firebase";
@@ -184,22 +185,35 @@ export const onStoryTextChanged = value => {
   };
 };
 
-export const onAddStory = (story,storyImage,tripUId ) => {
-  const { currentUser } = firebase.auth();
-  return dispatch => {
-    firebase
-      .database()
-      .ref(`/Trips/${currentUser.uid}/UserTrips/`)
-      .push({ tripStartPlace, tripEndPlace })
-      .then(() => {
-        dispatch({ type: SHOW_TRIP_LIST, payload: true });
-      });
-  };
-};
 
 export const setTripID = tripId => {
   return {
     type: SET_TRIP_ID,
     payload: tripId
   };
+};
+
+
+export const onStoryDetailAdd = (storyImage,storyText,tripId) => {
+   
+  const { currentUser } = firebase.auth();
+  return dispatch => {
+    fetch("https://us-central1-tripping-22ff3.cloudfunctions.net/storeImage", {
+    method: "POST",
+    body: JSON.stringify({
+      image: storyImage.base64
+    })
+  }).catch(err => console.log(err)).
+    then(res => res.json()).
+    then(parsedRes => {
+      firebase
+        .database()
+        .ref(`/Trips/${currentUser.uid}/UserTrips/${tripId}/TripStories`)
+        .push({ storyText: storyText, storyImage: parsedRes.imageUrl })
+        .then(() => {
+          dispatch({ type: SHOW_TRIP_STORY_LIST, payload: true });
+        });
+    })
+  }
+    
 };
