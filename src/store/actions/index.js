@@ -16,7 +16,8 @@ import {
   ON_STORY_IMAGE_PICKED,
   ON_STORY_TEXT_CHANGED,
   SET_TRIP_ID,
-  SHOW_TRIP_STORY_LIST
+  SHOW_TRIP_STORY_LIST,
+  STORIES_FETCH_SUCCESS
 } from "./types";
 
 import firebase from "firebase";
@@ -216,4 +217,17 @@ export const onStoryDetailAdd = (storyImage,storyText,tripId) => {
     })
   }
     
+};
+
+export const fetchStories = (tripId) => {
+  const { currentUser } = firebase.auth();
+  console.log(tripId)
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/Trips/${currentUser.uid}/UserTrips/TripStories/${tripId}`)
+      .on("value", snapshot => {
+        dispatch({ type: STORIES_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
 };

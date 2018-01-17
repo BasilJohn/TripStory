@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Modal ,FlatList } from 'react-native';
 import { connect } from "react-redux";
 import { Navigation } from 'react-native-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { showModal } from '../../store/actions/index';
+import { showModal,fetchStories } from '../../store/actions/index';
 import TripDetail from './TripDetail';
 
 const AddIcon = ({ onPress, name, size, ...props }) =>
@@ -37,6 +37,8 @@ class TripStory extends React.Component {
             ],
             animated: true
         });
+
+        this.props.fetchStories(this.props.tripId);
     }
     handlePressSettings = () => {
         this.setState({ showModal: true });
@@ -98,12 +100,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = ({ navigation }, ownProps) => {
+const mapStateToProps = ({ navigation, trip }, ownProps) => {
     const { navigator } = ownProps;
-
+    const { tripId } = trip;
     return {
-        navigator
+        navigator,
+        tripId
     };
 };
 
-export default connect(mapStateToProps, {})(TripStory);
+export default connect(mapStateToProps, { fetchStories })(TripStory);

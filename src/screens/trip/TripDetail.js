@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ImageHolder,TextArea, Button } from '../../components/common';
 import { connect } from "react-redux";
-import { onStoryImagePicked, onStoryTextChanged,onStoryDetailAdd } from "../../store/actions";
+import { onStoryImagePicked, onStoryTextChanged,
+         onStoryDetailAdd } from "../../store/actions";
 
 class TripDetail extends React.Component {
 
