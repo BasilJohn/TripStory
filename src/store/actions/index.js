@@ -221,11 +221,10 @@ export const onStoryDetailAdd = (storyImage,storyText,tripId) => {
 
 export const fetchStories = (tripId) => {
   const { currentUser } = firebase.auth();
-  console.log(tripId)
-  return dispatch => {
+   return dispatch => {
     firebase
       .database()
-      .ref(`/Trips/${currentUser.uid}/UserTrips/TripStories/${tripId}`)
+      .ref(`/Trips/${currentUser.uid}/UserTrips/${tripId}/TripStories`)
       .on("value", snapshot => {
         dispatch({ type: STORIES_FETCH_SUCCESS, payload: snapshot.val() });
       });

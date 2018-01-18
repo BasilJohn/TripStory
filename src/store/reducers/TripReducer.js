@@ -39,7 +39,6 @@ export default (state = INITIAL_STATE ,action ) =>{
         case SHOW_TRIP_STORY_LIST:
         return { ...state, tripId: action.payload }
         case STORIES_FETCH_SUCCESS:
-        console.log(action.payload)
         return { ...state, storyList: action.payload }
         default:
         return state;

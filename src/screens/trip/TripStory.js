@@ -5,6 +5,7 @@ import { Navigation } from 'react-native-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { showModal,fetchStories } from '../../store/actions/index';
 import TripDetail from './TripDetail';
+import _ from "lodash";
 
 const AddIcon = ({ onPress, name, size, ...props }) =>
     <TouchableOpacity
@@ -55,7 +56,16 @@ class TripStory extends React.Component {
         return (
             <View style={styles.containerStyle} >
                 <View>
-                    <Text>Stories</Text>
+                    <FlatList 
+                    data={this.props.storyList}
+                    keyExtractor={(x,i)=>i}
+                    renderItem={({item,index})=>{
+                    // <View>
+                    // <Text>{item.storyText}</Text>
+                    // </View>
+                    console.log(item.storyText)
+                    }}>
+                    </FlatList>
                 </View>
                 <Modal animationType={"slide"} transparent={false}
                     visible={modalStatus}
@@ -103,9 +113,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ navigation, trip }, ownProps) => {
     const { navigator } = ownProps;
     const { tripId } = trip;
+    const storyList = _.map(trip.storyList, (val, uid) => {
+        return { ...val, uid };
+      });
+     
     return {
         navigator,
-        tripId
+        tripId,
+        storyList
     };
 };
 
