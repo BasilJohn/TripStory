@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Modal ,FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Modal, FlatList ,Image } from 'react-native';
 import { connect } from "react-redux";
 import { Navigation } from 'react-native-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { showModal,fetchStories } from '../../store/actions/index';
+import { showModal, fetchStories } from '../../store/actions/index';
 import TripDetail from './TripDetail';
 import _ from "lodash";
 
@@ -50,21 +50,19 @@ class TripStory extends React.Component {
     }
 
     render() {
-
         const modalStatus = this.state.showModal ? true : false;
-
         return (
             <View style={styles.containerStyle} >
                 <View>
-                    <FlatList 
-                    data={this.props.storyList}
-                    keyExtractor={(x,i)=>i}
-                    renderItem={({item,index})=>{
-                    // <View>
-                    // <Text>{item.storyText}</Text>
-                    // </View>
-                    console.log(item.storyText)
-                    }}>
+                    <FlatList
+                        data={this.props.storyList}
+                        keyExtractor={(x, i) => i}
+                        renderItem={({ item }) =>
+                        <View>
+                           <Image source={{uri:item.storyImage}} style={styles.introImageStyle} />
+                           <Text>{item.storyText}</Text>
+                        </View>
+                        }>
                     </FlatList>
                 </View>
                 <Modal animationType={"slide"} transparent={false}
@@ -74,7 +72,7 @@ class TripStory extends React.Component {
                         <TouchableOpacity style={styles.closeStyle} onPress={this.toggleModal}>
                             <Ionicons style={styles.button} color={"#F1F1F2"} name="md-close-circle" size={30} />
                         </TouchableOpacity>
-                        <TripDetail closeModal={this.toggleModal}/>
+                        <TripDetail closeModal={this.toggleModal} />
                     </View>
                 </Modal>
             </View>
@@ -107,7 +105,14 @@ const styles = StyleSheet.create({
     },
     containerStyle: {
         flex: 1
-    }
+    },
+    introImageStyle: {
+        flex: 1,
+        alignSelf: "center",
+        width: 80,
+        height: 80,
+        backgroundColor: "red"
+      },
 });
 
 const mapStateToProps = ({ navigation, trip }, ownProps) => {
@@ -115,8 +120,8 @@ const mapStateToProps = ({ navigation, trip }, ownProps) => {
     const { tripId } = trip;
     const storyList = _.map(trip.storyList, (val, uid) => {
         return { ...val, uid };
-      });
-     
+    });
+
     return {
         navigator,
         tripId,
