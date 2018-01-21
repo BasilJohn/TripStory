@@ -110,8 +110,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: "center",
         width: 80,
-        height: 80,
-        backgroundColor: "red"
+        height: 80
       },
 });
 
