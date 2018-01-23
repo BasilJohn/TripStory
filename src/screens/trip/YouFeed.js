@@ -32,11 +32,13 @@ class YouFeed extends React.Component {
   render(props) {
     
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <FlatList
+        data={this.props.tripList}
+        keyExtractor={(x, i) => i}
+        renderItem={({ item }) =>
+        <TripList  trip={item}/>
+          }>
+      </FlatList>
     );
   }
 }

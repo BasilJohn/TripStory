@@ -5,6 +5,7 @@ import { Navigation } from 'react-native-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { showModal, fetchStories } from '../../store/actions/index';
 import TripDetail from './TripDetail';
+import StoryItem from './StoryItem';
 import _ from "lodash";
 
 const AddIcon = ({ onPress, name, size, ...props }) =>
@@ -58,10 +59,7 @@ class TripStory extends React.Component {
                         data={this.props.storyList}
                         keyExtractor={(x, i) => i}
                         renderItem={({ item }) =>
-                        <View>
-                           <Image source={{uri:item.storyImage}} style={styles.introImageStyle} />
-                           <Text>{item.storyText}</Text>
-                        </View>
+                        <StoryItem storyItem={item} />
                         }>
                     </FlatList>
                 </View>
